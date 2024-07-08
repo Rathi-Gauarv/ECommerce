@@ -1,0 +1,6 @@
+.home_screen_container{
+    height:78vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

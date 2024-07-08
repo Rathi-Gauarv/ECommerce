@@ -1,0 +1,68 @@
+.register_full_screen_container {
+    position: fixed;
+    top: 0;
+    z-index:50;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+    background: rgb(0, 0, 0, 0.7);
+  }
+.register_main_container{
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    position: absolute;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.inner_register_container{
+    background: white;
+    border-radius: 10px;
+    width: 50rem;
+    padding: 20px;
+}
+.register_form_error{
+    color: red;
+}
+.passwordInput_container{
+    position: relative;
+}
+.eye_container{
+    position: absolute;
+    width:40px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.register_form_label{
+    text-align: left;
+    padding-left: 50px !important;
+}
+.error_field{
+    color: red;
+    font-size: 15px;
+    text-align: left;
+}
+.alreday_sign-in{
+    cursor: pointer;
+}
+.alreday_sign-in:hover{
+    color: blue;
+}
+.register_cross_btn{
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    cursor: pointer;
+}
+.register_cross_btn:hover{
+    color: red;
+}
+.register_as_seller{
+    cursor: pointer;
+}

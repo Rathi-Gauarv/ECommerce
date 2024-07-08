@@ -1,0 +1,13 @@
+.notification_main_container{
+    position: sticky;
+    top: 0;
+    z-index:11;
+    transition: all 1s ease;
+}
+
+.menu_main_container{
+    position: sticky;
+    top:70px;
+    z-index: 10;
+    transition: all 0.5s ease;
+}

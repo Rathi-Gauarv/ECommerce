@@ -1,0 +1,132 @@
+.main_categoryProducts_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+.inner_categoryProducts_container {
+  padding: 5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px 100px;
+  min-height:60vh
+}
+.searchbar_container {
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: white;
+  padding: 2px 10px;
+}
+.searchbar_input {
+  width: 20rem;
+  height: 2rem;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+.search_icon {
+  cursor: pointer;
+}
+.searchbar_filtermenu_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0px 50px;
+  position: relative;
+}
+.filter_icon_menu_container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  right: 0;
+  margin-top:-20px
+}
+.filter_icon_container {
+  display: flex;
+  justify-content: left;
+  cursor: pointer;
+  padding: 0px 20px;
+  user-select: none;
+}
+.filter_icon_open {
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+  padding: 0px 20px;
+  user-select: none;
+}
+.filter_icon {
+  font-size: 20px;
+  transition: all 1s ease;
+}
+.filterMenu_container {
+  background: rgba(48, 62, 128, 0.8);
+  color: white;
+  width: 20rem;
+  min-height: 15vh;
+  transition: all 1s ease;
+}
+.filterMenu_items_container {
+  padding: 1em;
+}
+.filterMenu_item {
+  border-bottom: 3px solid wheat;
+}
+.filterMenu_item_heading {
+  padding: 2px;
+  padding-bottom:10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  color:rgb(228, 227, 224)
+}
+.filterMenu_item_subHeading_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.items_subHeading {
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.items_subHeading:hover {
+  color: black;
+  font-weight: 700;
+  background: rgba(194, 190, 190, 0.6);
+}
+.no_product_found_container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 20vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin-left: 10rem;
+  min-height: 40vh;
+}
+.filter_clearAll_container {
+  display: flex;
+  justify-content: space-between;
+}
+.filter_heading{
+  font-size: 30px;
+}
+.filter_heading, .clear_all_heading {
+  cursor: pointer;
+}
+.clear_all_heading:hover{
+  color:red
+}
+.subItems_checkbox{
+  margin-right:5px;
+  margin-bottom: 10px;
+}

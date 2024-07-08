@@ -1,0 +1,76 @@
+.login_full_screen_container {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  background: rgb(0, 0, 0, 0.7);
+}
+.login_container {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  position: absolute;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.inner_login_container {
+  border-radius: 10px;
+  width: 50rem;
+  padding: 20px;
+}
+.hint_container {
+  text-align: left;
+  cursor: pointer;
+}
+.hint_container:hover {
+  color: green;
+}
+.errorMessage {
+  color: red;
+}
+.hintPopup_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(207, 206, 201);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hint_table_row {
+  text-align: left;
+}
+.lower_content_container{
+    text-align: left;
+}
+.create_account_text{
+    cursor: pointer;
+}
+.create_account_text:hover{
+    color: green;
+}
+.back_to_home_text{
+    cursor: pointer;
+}
+.back_to_home_text:hover{
+    color: green;
+}
+.login_cross_btn{
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+}
+.login_cross_btn:hover{
+  color: red;
+}

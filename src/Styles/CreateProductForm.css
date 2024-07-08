@@ -1,0 +1,34 @@
+
+.craeteProductForm_Container {
+  padding: 20px;
+  background: rgb(238, 235, 235);
+  border-radius: 10px;
+}
+.heading {
+  margin-bottom: 20px;
+}
+
+.add_btn {
+  width: 20%;
+  margin-right: 50px;
+}
+.cancel_btn {
+  width: 20%;
+}
+.category_dropdown {
+  width: 100%;
+  outline: none;
+}
+.dropdown_field {
+  position: relative !important;
+}
+.dropdown_field .dropdown_arrow {
+  position: absolute;
+  right: 30px;
+  top: 20%;
+}
+.createForm_error {
+  color: red;
+  text-align: left;
+  padding-left: 5px;
+}

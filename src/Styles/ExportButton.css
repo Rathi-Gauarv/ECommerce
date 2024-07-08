@@ -1,0 +1,39 @@
+.export_btn_icon_container{
+    background: white;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    padding: 0 5px;
+    font-size: 20px;
+    font-weight: 500;
+    background: rgb(82, 12, 196);
+    transition: all 0.5s ease;
+}
+
+.export_select{
+    outline: none;
+    border: none;
+    background: rgb(82, 12, 196);
+    color: white;
+    
+}
+.download_icon{
+    font-size: 20px;
+    cursor:pointer;
+    margin-left: 5px;
+}
+.download_iconAfterSelected{
+    font-size: 20px;
+    cursor:pointer;
+    margin-left: 5px;
+}
+
+.download_iconAfterSelected:hover{
+    font-size: 20px;
+    cursor:pointer;
+    margin-left: 5px;
+    color: lightgreen !important;
+}

@@ -1,0 +1,27 @@
+.cart_container {
+    min-height: 78vh;
+    padding:30px;
+}
+.cart_products_container{
+    min-height:100%;
+}
+.empty_cart_container{
+    min-height:40vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.totalPrice_container{
+    height:50px;
+    padding:5px 20px;
+    margin-bottom:100px;
+    margin-top: 20px;
+    background: rgb(10, 129, 36);
+    color: white;
+    border-radius: 5px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: larger;
+    font-weight: 800;
+}

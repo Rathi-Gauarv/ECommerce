@@ -1,0 +1,21 @@
+.menu_container {
+    display:flex;
+    height:50px;
+    align-items:center;
+    background:#8f9695;
+}
+.menu_item {
+    font-weight:500;
+    font-size:20px;
+    margin-left:15px;
+    transition:all 0.5s ease;
+    cursor:pointer;
+    border: 1px solid black;
+    padding:4px;
+    border-radius: 5px;
+    background:#d2eff8;
+}
+
+ .menu_item:hover {
+     transform: scale(1.1);
+}

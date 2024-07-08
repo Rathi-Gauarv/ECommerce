@@ -1,0 +1,35 @@
+.filter_condition_main_container{
+    width: 20rem;
+    position: absolute;
+    left: 100%;
+    margin-top: 20px;
+    background: white;
+    padding: 10px 15px;
+    color: black;
+    margin-left: -15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+}
+.inner_filter_condition_container{
+    text-align: left;
+}
+.filter_icon_text_container{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+.filter_text_span{
+    margin-left: 10px;
+}
+.Btn_contianer{
+    display: flex;
+    justify-content: space-between;
+}
+.filter_clear_btn{
+    width: 45%;
+}
+.clear_btn{
+    background: rgb(235, 230, 230) !important;
+    border: 1px solid black !important;
+    font-weight: 700 !important;
+}

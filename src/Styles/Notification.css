@@ -1,0 +1,25 @@
+.notification_container {
+  background: #0b25c2;
+  color: white;
+  padding: 2px 20px;
+}
+.heading {
+  text-align: center;
+}
+
+.cart_icon_login_container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.cart_count{
+  position: absolute;
+  top:-10px
+}
+.login_text{
+  margin-right: 20px;
+  cursor: pointer;
+}
+/* .swal_container{
+  overflow: hidden;
+} */
