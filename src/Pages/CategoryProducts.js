@@ -37,9 +37,44 @@ const CategoryProducts = () => {
   // -------------------------Search Bar---------------------------
   const handleSearchValue = (e) => {
     console.log("e", e);
-    setSearchValue(e.target.value);
+    let value=e.target.value
+    setSearchValue(value);
+    searchFunction(value)
     // handleSearchFilteredProducts(e.target.value);
   };
+
+  const searchFunction = (searchInput) => {
+    // Split input on spaces
+
+    if(searchInput.length === 0 ){
+      setSearchedProducts(null);
+
+      setProductsOnScreen(location?.state?.categoryProducts);
+      return
+    }
+
+    const searchWords = searchInput.trim().toLowerCase().split(" ");
+
+    // Filter data based on search input
+    const filteredResults = [...location?.state?.categoryProducts].filter(
+      (item) =>
+        searchWords.every(
+          (word) =>
+            // Search in the 'name' and 'category' properties
+            item?.product_Name?.toLowerCase()?.includes(word) ||
+            item?.product_Desc?.toLowerCase()?.includes(word)
+        )
+    );
+
+    // Set results based on input length
+    let result = searchInput.length === 0 ? [] : filteredResults
+
+    setSearchedProducts(result);
+
+    setProductsOnScreen(result );
+  };
+
+ 
 
   const handleSearchFilteredProducts = () => {
     const SV = searchValue;
@@ -47,6 +82,7 @@ const CategoryProducts = () => {
     if (!SV) {
       return;
     }
+    
 
     // const selectedCheckbox = document.getElementsByClassName('subItems_checkbox')
     // for(let i=0; i<selectedCheckbox.length; i++){
@@ -68,6 +104,7 @@ const CategoryProducts = () => {
 
     setProductsOnScreen(filteredProducts);
   };
+  
   const handleClearSearch = () => {
     setSearchValue("");
     setSearchedProducts(null);
@@ -786,14 +823,14 @@ const CategoryProducts = () => {
 
           <i
             className="fa-solid fa-magnifying-glass search_icon"
-            onClick={handleSearchFilteredProducts}
+            // onClick={handleSearchFilteredProducts}
           />
         </div>
       </div>
 
       <div className="inner_categoryProducts_container">
-        {productsOnScreen?.length > 0 ? (
-          productsOnScreen
+        { productsOnScreen?.length > 0 ? (
+           productsOnScreen
             .slice(
               page * productPerPage - productPerPage,
               page * productPerPage
