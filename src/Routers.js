@@ -19,10 +19,10 @@ const CartAllProducts = createContext();
 const ModalContext = createContext();
 
 const Routers = () => {
+  let LoginDetails =
+    localStorage.getItem("login") && JSON.parse(localStorage.getItem("login"));
   const [products, setProducts] = useState(null);
-  const [loginCredential, setLoginCredential] = useState(
-    JSON.parse(localStorage.getItem("login"))
-  );
+  const [loginCredential, setLoginCredential] = useState(LoginDetails);
   const [cartProducts, setCartProducts] = useState(getcartItems());
   const [count, setCount] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -34,20 +34,21 @@ const Routers = () => {
 
   // ---------------------------get cart items initially-----------------------
   function getcartItems() {
-    const cartList = JSON.parse(localStorage.getItem("cartList"));
+    const cartList = localStorage.getItem("cartList") && JSON.parse(localStorage.getItem("cartList"));
+    
 
-    const userCartObj = cartList?.find(
-      (item) => item.userEmail == loginCredential?.email
+    if(!loginCredential || !cartList){
+      return []
+    }
+    const userObjWithCart = cartList?.find(
+      (item) => item.userEmail == loginCredential.email
     );
-    if (loginCredential) {
-      if (userCartObj) {
-        return userCartObj.cartItems;
+      if (!!userObjWithCart) {
+        return userObjWithCart.cartItems;
       } else {
         return [];
       }
-    } else {
-      return [];
-    }
+    
   }
 
   // -----------------------------check initially admin credential for menu bar----------------------
@@ -136,28 +137,30 @@ const Routers = () => {
 
   // -------------------------------cartList------------------------
   useEffect(() => {
-    const cartList = JSON.parse(localStorage.getItem("cartList"));
+    const cartList =
+      localStorage.getItem("cartList") &&
+      JSON.parse(localStorage.getItem("cartList"));
 
-    const login = JSON.parse(localStorage.getItem("login"));
-    if (!cartList) {
-      if (login) {
+    const login =
+      localStorage.getItem("login") &&
+      JSON.parse(localStorage.getItem("login"));
+    if (!!login) {
+      if (!cartList) {
         const cartObj = {
           userEmail: loginCredential?.email ? loginCredential?.email : "",
           cartItems: [],
         };
         localStorage.setItem("cartList", JSON.stringify([cartObj]));
         // setEmptyCart(!emptyCart)
-      }
-      // else{
-      //   localStorage.setItem("cartList", JSON.stringify(cartList));
-      // }
-    } else {
-      if (login) {
-        const userCartObj = cartList?.find(
+        // else{
+        //   localStorage.setItem("cartList", JSON.stringify(cartList));
+        // }
+      } else {
+        const userObjWithCart = cartList?.find(
           (item) => item.userEmail == loginCredential?.email
         );
-        if (userCartObj) {
-          setCartProducts(userCartObj?.cartItems);
+        if (userObjWithCart) {
+          setCartProducts(userObjWithCart?.cartItems);
         } else {
           setCartProducts([]);
         }
@@ -170,10 +173,10 @@ const Routers = () => {
     const cartList = JSON.parse(localStorage.getItem("cartList"));
 
     if (cartList && loginCredential) {
-      const userCartObj = cartList?.find(
+      const userObjWithCart = cartList?.find(
         (item) => item.userEmail == loginCredential?.email
       );
-      if (!userCartObj) {
+      if (!userObjWithCart) {
         const cartObj = {
           userEmail: loginCredential?.email ? loginCredential?.email : "",
           cartItems: cartProducts ? cartProducts : [],
@@ -181,12 +184,12 @@ const Routers = () => {
         cartList?.push(cartObj);
         localStorage.setItem("cartList", JSON.stringify(cartList));
       } else {
-        userCartObj["cartItems"] = cartProducts;
+        userObjWithCart["cartItems"] = cartProducts;
         const index = cartList?.findIndex(
           (item) => item.userEmail == loginCredential?.email
         );
         cartList.splice(index, 1);
-        cartList.push(userCartObj);
+        cartList.push(userObjWithCart);
         localStorage.setItem("cartList", JSON.stringify(cartList));
       }
     }
@@ -223,7 +226,7 @@ const Routers = () => {
             <Routes>
               <Route
                 path="/home"
-                element={<ProtectedHome Component={Home} path="/home" />}
+                element={<ProtectedHome Component={Home} />}
               />
               <Route path="/" element={<Shopping />} />
               <Route path="/:category" element={<CategoryProducts />} />

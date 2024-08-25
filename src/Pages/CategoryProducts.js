@@ -13,7 +13,7 @@ import "../Styles/CategoryProducts.css";
 
 const CategoryProducts = () => {
   const contextValue = useContext(AllProducts);
-  const [searchValue, setSearchValue] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
   let [searchedProducts, setSearchedProducts] = useState(null);
   const [sideFilterMenu, setSideFilterMenu] = useState(false);
   const [product_Name_Array, setProduct_Name_Array] = useState([]);
@@ -36,12 +36,17 @@ const CategoryProducts = () => {
 
   // -------------------------Search Bar---------------------------
   const handleSearchValue = (e) => {
+    console.log("e", e);
     setSearchValue(e.target.value);
     // handleSearchFilteredProducts(e.target.value);
   };
 
-  const handleSearchFilteredProducts = (pValue) => {
-    const SV = pValue ? pValue : searchValue;
+  const handleSearchFilteredProducts = () => {
+    const SV = searchValue;
+
+    if (!SV) {
+      return;
+    }
 
     // const selectedCheckbox = document.getElementsByClassName('subItems_checkbox')
     // for(let i=0; i<selectedCheckbox.length; i++){
@@ -49,12 +54,24 @@ const CategoryProducts = () => {
     // }
 
     //const filteredProducts = [...contextValue.products].filter(item=>item.product_Name.toLowerCase().includes(searchValue.toLowerCase()) || item.product_Desc.toLowerCase().includes(searchValue.toLowerCase()) )
+    console.log(
+      "location?.state?.categoryProducts",
+      location?.state?.categoryProducts
+    );
     const filteredProducts = [...location?.state?.categoryProducts]?.filter(
       (item) =>
         item?.product_Name?.toLowerCase()?.includes(SV?.toLowerCase()) ||
         item?.product_Desc?.toLowerCase()?.includes(SV?.toLowerCase())
     );
+    console.log("filteredProducts", filteredProducts);
     setSearchedProducts(filteredProducts);
+
+    setProductsOnScreen(filteredProducts);
+  };
+  const handleClearSearch = () => {
+    setSearchValue("");
+    setSearchedProducts(null);
+    setProductsOnScreen(location?.state?.categoryProducts);
   };
 
   // -------------------------Filter Product Name---------------------
@@ -177,8 +194,8 @@ const CategoryProducts = () => {
         const filteredProducts = productsForNameFilter?.filter(
           (item) => item?.id == productItem.id
         );
-        if (filteredProducts?.length>0) {
-          if (searchedProducts?.lemgth>0) {
+        if (filteredProducts?.length > 0) {
+          if (searchedProducts?.lemgth > 0) {
             if (filteredbyPrice) {
               setFilteredbyName([...filteredProducts]);
               setSearchedProducts([...filteredProducts]);
@@ -191,7 +208,7 @@ const CategoryProducts = () => {
             setSearchedProducts([...filteredProducts]);
           }
         } else {
-          if(searchedProducts?.length>0){
+          if (searchedProducts?.length > 0) {
             if (filteredbyPrice) {
               setFilteredbyName([]);
               setSearchedProducts([]);
@@ -199,7 +216,7 @@ const CategoryProducts = () => {
               setFilteredbyName(searchedProducts);
               setSearchedProducts(searchedProducts);
             }
-          }else{
+          } else {
             setFilteredbyName([]);
             setSearchedProducts([]);
           }
@@ -215,8 +232,8 @@ const CategoryProducts = () => {
         const filteredProducts = productsForNameFilter?.filter(
           (item) => item?.id == productItem.id
         );
-        if (filteredProducts?.length>0) {
-          if (searchedProducts?.length>0) {
+        if (filteredProducts?.length > 0) {
+          if (searchedProducts?.length > 0) {
             if (filteredbyPrice) {
               setFilteredbyName([...filteredProducts]);
               setSearchedProducts([...filteredProducts]);
@@ -229,7 +246,7 @@ const CategoryProducts = () => {
             setSearchedProducts([...filteredProducts]);
           }
         } else {
-          if(searchedProducts?.length>0){
+          if (searchedProducts?.length > 0) {
             if (filteredbyPrice) {
               setFilteredbyName([]);
               setSearchedProducts([]);
@@ -237,7 +254,7 @@ const CategoryProducts = () => {
               setFilteredbyName(searchedProducts);
               setSearchedProducts(searchedProducts);
             }
-          }else{
+          } else {
             setFilteredbyName([]);
             setSearchedProducts([]);
           }
@@ -348,7 +365,7 @@ const CategoryProducts = () => {
         console.log("filteredProducts under price", filteredProducts);
 
         if (filteredProducts?.length > 0) {
-          if (searchedProducts?.length>0) {
+          if (searchedProducts?.length > 0) {
             if (filteredbyName) {
               setFilteredbyPrice([...filteredProducts]);
               setSearchedProducts([...filteredProducts]);
@@ -361,7 +378,7 @@ const CategoryProducts = () => {
             setSearchedProducts([...filteredProducts]);
           }
         } else {
-           if(searchedProducts?.length>0){
+          if (searchedProducts?.length > 0) {
             if (filteredbyName) {
               setFilteredbyPrice([]);
               setSearchedProducts([]);
@@ -369,7 +386,7 @@ const CategoryProducts = () => {
               setFilteredbyPrice(searchedProducts);
               setSearchedProducts(searchedProducts);
             }
-          }else{
+          } else {
             setFilteredbyPrice([]);
             setSearchedProducts([]);
           }
@@ -395,7 +412,7 @@ const CategoryProducts = () => {
         }
 
         if (filteredProducts?.length > 0) {
-          if (searchedProducts?.length>0) {
+          if (searchedProducts?.length > 0) {
             if (filteredbyName) {
               setFilteredbyPrice([...filteredProducts]);
               setSearchedProducts([...filteredProducts]);
@@ -408,7 +425,7 @@ const CategoryProducts = () => {
             setSearchedProducts([...filteredProducts]);
           }
         } else {
-          if(searchedProducts?.length>0){ 
+          if (searchedProducts?.length > 0) {
             if (filteredbyName) {
               setFilteredbyPrice([]);
               setSearchedProducts([]);
@@ -416,7 +433,7 @@ const CategoryProducts = () => {
               setFilteredbyPrice(searchedProducts);
               setSearchedProducts(searchedProducts);
             }
-          }else{
+          } else {
             setFilteredbyPrice([]);
             setSearchedProducts([]);
           }
@@ -579,6 +596,9 @@ const CategoryProducts = () => {
       setProductsOnScreen(newObject);
     }
   }, [checkbox]);
+
+  console.log("searchedProducts", searchedProducts);
+  console.log("productsOnScreen", productsOnScreen);
 
   return (
     <div className="main_categoryProducts_container">
@@ -754,12 +774,20 @@ const CategoryProducts = () => {
             className="searchbar_input"
             type="text"
             placeholder="Search here"
+            value={searchValue}
             onChange={handleSearchValue}
           />
+          {!!searchValue && (
+            <i
+              className="fa-solid fa-x search_cross_icon"
+              onClick={handleClearSearch}
+            />
+          )}
+
           <i
             className="fa-solid fa-magnifying-glass search_icon"
-            onClick={() => handleSearchFilteredProducts(null)}
-          ></i>
+            onClick={handleSearchFilteredProducts}
+          />
         </div>
       </div>
 
